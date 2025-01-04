@@ -44,7 +44,7 @@ func Signin (c* gin.Context) {
 		c.String(500,"error signing token")
 	}
 
-  c.JSON(200, gin.H{"success, here is JWT" : tokenString });
+  c.JSON(200, gin.H{"success" : tokenString });
 
 }
 
