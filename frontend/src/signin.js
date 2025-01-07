@@ -1,4 +1,47 @@
+import { useState, useRef } from 'react';
+import Cookies from "universal-cookie";
+
 export default function Signin() {
+  const [username, setusername] = useState('');
+  const [password, setpassword] = useState('');
+  const [jwt, setjwt] = useState('');
+  const jwtRef = useRef(null);
+  const cookies = new Cookies();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let userData = {
+      username,
+      password,
+    };
+    fetch('http://localhost:3000/signin', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        if (data.error) {
+          console.log('Response Data:', data);
+          alert(JSON.stringify(data.error));
+        } else if (data.success) {
+          setjwt(data.success);
+          jwtRef.current = data.success;
+          cookies.set("jwt_authorization", data.success);
+          window.location.href="./home"
+        }
+      })
+      .catch((error) => {
+        alert('error submitting form');
+        console.log(error);
+      });
+  };
+
   return (
     <div className='d-flex align-items-center justify-content-center vh-100 bg-light'>
       <div
@@ -11,19 +54,22 @@ export default function Signin() {
           <h3 className='mb-2'>Username</h3>
           <textarea
             className='form-control mb-3'
-            style = {{width: '267px', height: '40px'}}
+            style={{ width: '267px', height: '40px' }}
             placeholder='Enter username'
+            value={username}
+            onChange={(e) => setusername(e.target.value)}
           ></textarea>
 
           <h3 className='mb-2'>Password</h3>
           <textarea
             className='form-control mb-3'
-            style = {{width: '267px', height: '40px'}}
-            placeholder='Enter username'
+            style={{ width: '267px', height: '40px' }}
             placeholder='Enter password'
+            value={password}
+            onChange={(e) => setpassword(e.target.value)}
           ></textarea>
 
-          <button className='btn btn-primary'>Submit</button>
+          <button className='btn btn-primary' onClick={handleSubmit}>Submit</button>
         </div>
       </div>
     </div>

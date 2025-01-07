@@ -34,6 +34,7 @@ export default function SignUp() {
         console.log(error);
       });
   };
+
   return (
     <div className='d-flex align-items-center justify-content-center vh-100 bg-light'>
       <div
