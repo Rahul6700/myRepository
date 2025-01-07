@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Signin from './signin.js';
 import Signup from './signup.js';
+import Home from './home.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         {/* SignIn Route */}
         <Route path='/signin' element={<Signin />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/home' element={<Home />} />
       </Routes>
     </Router>
   );

@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
-import Cookies from "universal-cookie";
+import Cookies from 'universal-cookie';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signin() {
   const [username, setusername] = useState('');
@@ -7,6 +8,7 @@ export default function Signin() {
   const [jwt, setjwt] = useState('');
   const jwtRef = useRef(null);
   const cookies = new Cookies();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,8 +34,8 @@ export default function Signin() {
         } else if (data.success) {
           setjwt(data.success);
           jwtRef.current = data.success;
-          cookies.set("jwt_authorization", data.success);
-          window.location.href="./home"
+          cookies.set('jwt_authorization', data.success);
+          navigate('/home');
         }
       })
       .catch((error) => {
@@ -69,7 +71,9 @@ export default function Signin() {
             onChange={(e) => setpassword(e.target.value)}
           ></textarea>
 
-          <button className='btn btn-primary' onClick={handleSubmit}>Submit</button>
+          <button className='btn btn-primary' onClick={handleSubmit}>
+            Submit
+          </button>
         </div>
       </div>
     </div>
