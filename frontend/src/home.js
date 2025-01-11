@@ -22,6 +22,7 @@ export default function Home() {
       .then((data) => {
         if (data.error) {
           alert(JSON.stringify(data.error));
+          cookies.remove('jwt_authorization');
           navigate('/signin');
         } else if (data.success) {
           console.log(data.success);
