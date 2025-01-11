@@ -7,9 +7,8 @@ import (
   "gorm.io/driver/sqlite"
   "time"
   "backend/models"
+  "backend/key"
 )
-
-const SECRET_KEY = "abcdefg"
 
 func Signin (c* gin.Context) {
   var dets models.User
@@ -33,18 +32,19 @@ func Signin (c* gin.Context) {
     return
   }
   
-	ttl := time.Second * 300 //token's time to live is 5 mins
+	ttl := time.Second * 10 //token's time to live is 5 mins
 	claims := jwt.MapClaims{
 		"username": dets.Username,
 		"exp":      time.Now().Add(ttl).Unix(),
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	tokenString, err := token.SignedString([]byte(SECRET_KEY))
+	tokenString, err := token.SignedString([]byte(key.KEY))
 	if err != nil {
-		c.String(500,"error signing token")
+		c.JSON(500,gin.H{"error" : "error signing token"})
+		return
 	}
 
-  c.JSON(200, gin.H{"success" : tokenString });
+  c.JSON(201, gin.H{"success" : tokenString });
 
 }
 

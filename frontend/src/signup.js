@@ -10,7 +10,7 @@ export default function SignUp() {
       username,
       password,
     };
-    fetch('http://localhost:3000/signup', {
+    fetch('http://localhost:8080/signup', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -18,17 +18,17 @@ export default function SignUp() {
       },
       body: JSON.stringify(userData),
     })
-    .then((response) => {
-      return response.json(); // Return the JSON parsing promise
-    })
-    .then((data) => {
-      if(data.error){
-        console.log("Response Data:", data);
-        alert(JSON.stringify(data.error));
-      } else if (data.success) {
-        alert(JSON.stringify(data.success));
-      }
-    })
+      .then((response) => {
+        return response.json(); // Return the JSON parsing promise
+      })
+      .then((data) => {
+        if (data.error) {
+          console.log('Response Data:', data);
+          alert(JSON.stringify(data.error));
+        } else if (data.success) {
+          alert(JSON.stringify(data.success));
+        }
+      })
       .catch((error) => {
         alert('error submitting form');
         console.log(error);
