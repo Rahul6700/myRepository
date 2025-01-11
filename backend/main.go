@@ -4,6 +4,7 @@ import (
   "github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
   "backend/auth"
+  "backend/home"
 )
 
 func main () {
@@ -20,7 +21,7 @@ func main () {
   r.POST("/signup",auth.Signup);
   r.POST("/signin",auth.Signin);
   r.GET("/fetch",auth.Fetch);
-  r.GET("/color",auth.ColorChange);
+  r.GET("/color",home.ColorChange);
 
   r.Run(":8080");
 
