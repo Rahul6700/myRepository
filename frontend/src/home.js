@@ -30,7 +30,7 @@ export default function Home() {
         }
       })
       .catch((error) => {
-        alert('error submitting form');
+        alert('error submitting form, check if you are logged in');
         console.log(error);
       });
   };
