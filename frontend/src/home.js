@@ -62,7 +62,7 @@ export default function Home() {
           </button>
           <button className='btn btn-danger mt-5' onClick={handleLogout}>
             Logout
-          </button>
+         </button>
         </div>
       </div>
     </div>
