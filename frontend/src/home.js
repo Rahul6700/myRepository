@@ -60,7 +60,7 @@ export default function Home() {
           <button className='btn btn-primary mt-3' onClick={handleClick}>
             Change Color
           </button>
-          <button className='btn btn-danger mt-3' onClick={handleLogout}>
+          <button className='btn btn-danger mt-5' onClick={handleLogout}>
             Logout
           </button>
         </div>
