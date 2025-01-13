@@ -1,8 +1,14 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
   const [username, setusername] = useState('');
   const [password, setpassword] = useState('');
+  const navigate = useNavigate();
+
+  const redirectToSignin = (e) => {
+    navigate('/signin');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,6 +72,12 @@ export default function SignUp() {
             Submit
           </button>
         </div>
+        <p
+          className='text-primary text-decoration-underline'
+          onClick={redirectToSignin}
+        >
+          Click here to signin
+        </p>
       </div>
     </div>
   );

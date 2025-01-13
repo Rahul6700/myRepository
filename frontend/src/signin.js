@@ -10,12 +10,17 @@ export default function Signin() {
   const cookies = new Cookies();
   const navigate = useNavigate();
 
+  const redirectToSignup = (e) => {
+    navigate('/signup');
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let userData = {
       username,
       password,
     };
+
     fetch('http://localhost:8080/signin', {
       method: 'POST',
       headers: {
@@ -75,6 +80,12 @@ export default function Signin() {
             Submit
           </button>
         </div>
+        <p
+          className='text-primary text-decoration-underline'
+          onClick={redirectToSignup}
+        >
+          Click here to signup
+        </p>
       </div>
     </div>
   );
