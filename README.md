@@ -25,7 +25,7 @@ myRepository/
 
 ### 1. Clone the repository
 ```sh
-git clone https://github.com/yourusername/myRepository.git
+git clone https://github.com/Rahul6700/myRepository.git
 cd myRepository
 ```
 
